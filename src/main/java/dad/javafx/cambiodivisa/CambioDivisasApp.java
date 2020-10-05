@@ -74,6 +74,7 @@ public class CambioDivisasApp extends Application{
 		Scene scene = new Scene(root, 320, 200);
 		primaryStage.setTitle("CambioDivisasApp");
 		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
 		primaryStage.show();
 		
 		
