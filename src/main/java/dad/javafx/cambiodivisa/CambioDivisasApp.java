@@ -23,17 +23,19 @@ public class CambioDivisasApp extends Application{
 	private ArrayList<Divisa> divisasArray=new ArrayList<Divisa>();
 	private Button cambiarButton; 
 	private Alert errorAlert;
-
+	private Stage primaryStage;
 	
 	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+		this.primaryStage=primaryStage;
+		
 		errorAlert = new Alert(AlertType.ERROR);
 		errorAlert.setTitle("CambioDivisasApp");
 		errorAlert.setHeaderText("Error");
-		errorAlert.setContentText("El valor introducido no es válido, compruebe que se trate e un número");
+		
 		
 		divisasArray.add(new Divisa("Euro", 1.0));
 		divisasArray.add( new Divisa("Libra", 0.8873));
@@ -93,6 +95,8 @@ public class CambioDivisasApp extends Application{
 		
 		divisaToText.setText(Divisa.fromTo(divisaFrom,divisaTo ,cantidad ).toString());
 		} catch(NumberFormatException exception) {
+			errorAlert.initOwner(primaryStage);
+			errorAlert.setContentText(exception.getMessage());
 			errorAlert.showAndWait();
 		}
 	}
